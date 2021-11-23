@@ -4,17 +4,26 @@ def merge_sort(array)
     #base case
     return array if array.length < 2
     #split array
-    middle = ((array.size) / 2)
+    middle = (array.length / 2)
     left = array[0...middle]
-    right = array[(middle + 1)...(array.length)]
-    
+    right = array[(middle)...(array.length)]
+    p left
+    p right
     merge_sort(left)
     merge_sort(right)
     
     sorted = []
 
-    
+    until left.empty? && right.empty?
+        if left.first < right.first
+            sorted << left.shift
+        else
+            sorted << right.shift
+        end
+    end
     sorted
+    
+    
 end
 
 test = [3,4,1,2,6,5]
