@@ -7,24 +7,28 @@ def merge_sort(array)
     middle = (array.length / 2)
     left = array[0...middle]
     right = array[(middle)...(array.length)]
-    p left
-    p right
-    merge_sort(left)
-    merge_sort(right)
     
-    sorted = []
+    sorted_left = merge_sort(left)
+    sorted_right = merge_sort(right)
+    merge(sorted_left,sorted_right) 
+   
+end
 
-    until left.empty? && right.empty?
+def merge(left,right,sorted=[])
+    until left.empty? || right.empty?
         if left.first < right.first
             sorted << left.shift
         else
             sorted << right.shift
         end
     end
-    sorted
-    
-    
+    sorted + left + right # catchall once one of the array is empty. the other should be sorted.
 end
+
+
+
 
 test = [3,4,1,2,6,5]
 p merge_sort(test)
+
+
